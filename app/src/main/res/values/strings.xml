@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Udaan-16</string>
+
+    <!-- Shared Preference Keys-->
+    <string name="prefs_file" translatable="false">Udaan16Preferences</string>
+    <string name="prefs_key_version_code" translatable="false">version_code</string>
 </resources>
