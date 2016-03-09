@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingEnd="10dp"
+    android:paddingStart="10dp"
+    android:paddingTop="10dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".fragment.LoginPromptFragment"
+    tools:showIn="@layout/fragment_main_login_prompt">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="Udaan Logo"
+        android:src="@drawable/udaan_name" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign-In to get more personalized experience"
+        android:textColor="@color/materialWhite"
+        android:textSize="18sp" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/editText_fragment_main_login_prompt_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:inputType="text" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/editText_fragment_main_login_prompt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button_fragment_main_login_prompt_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonBackgroundDark"
+        android:text="Login" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_fragment_main_login_prompt_remind_later"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/buttonBackgroundDark"
+            android:text="Remind me Later" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="5dp"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/button_fragment_main_login_prompt_skip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/buttonBackgroundDark"
+            android:text="Skip" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.v7.widget.LinearLayoutCompat>
