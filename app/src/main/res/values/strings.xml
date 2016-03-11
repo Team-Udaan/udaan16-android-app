@@ -1,16 +1,21 @@
 <resources>
     <string name="app_name">Udaan-16</string>
+    <string name="title_activity_login">Udaan-16</string>
+    <string name="title_activity_main">Udaan-16</string>
+    <string name="title_tab_departments">Departments</string>
+    <string name="title_tab_about_us">About Us</string>
 
     <!-- Shared Preference Keys-->
     <string name="prefs_file" translatable="false">Udaan16Preferences</string>
     <string name="prefs_key_version_code" translatable="false">version_code</string>
     <string name="prefs_key_remind_later" translatable="false">remind_later</string>
-    <string name="prefs_authorization_token" translatable="false">authorization_token</string>
-    <string name="prefs_logged_in" translatable="false">logged_in</string>
+    <string name="prefs_key_authorization_token" translatable="false">authorization_token</string>
+    <string name="prefs_key_logged_in" translatable="false">logged_in</string>
+    <string name="prefs_key_data_json" translatable="false">data_json</string>
 
     <!-- API Keys -->
     <string name="api_key_username" translatable="false">username</string>
     <string name="api_key_password" translatable="false">password</string>
-    <string name="api_endpoint_login" translatable="false">http://udaan16.com:8000/login</string>
     <string name="api_key_authorization_token" translatable="false">authorization_token</string>
+    <string name="api_endpoint_login" translatable="false">http://udaan16.com:8000/login</string>
 </resources>

@@ -1,16 +1,15 @@
-package in.udaan16.udaan_16.fragment;
+package in.udaan16.udaan_16.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.AppCompatButton;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -20,46 +19,50 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.Charset;
+
 import in.udaan16.udaan_16.R;
 import in.udaan16.udaan_16.util.VolleySingleton;
 
-/**
- * Creator: vbarad
- * Date: 2016-03-07
- * Project: udaan16-android-app
- */
-public class LoginPromptFragment extends Fragment implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity {
 
-  private static final String LOG_TAG = "LoginPromptFragment";
+  private static final String LOG_TAG = "LoginActivity";
 
   private AppCompatEditText editTextUserName;
   private AppCompatEditText editTextPassword;
-  private AppCompatButton buttonLogin;
-  private AppCompatButton buttonRemindLater;
-  private AppCompatButton buttonSkip;
 
-  @Nullable
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    return inflater.inflate(R.layout.fragment_main_login_prompt, container, false);
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    this.setContentView(R.layout.activity_login);
   }
 
   @Override
-  public void onStart() {
+  protected void onStart() {
     super.onStart();
-    this.initializeComponents();
+
+    Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar_activity_login);
+    this.setSupportActionBar(toolbar);
+    ActionBar actionBar = this.getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setTitle(R.string.title_activity_login);
+    }
+
+    SharedPreferences sharedPreferences = this.getSharedPreferences(this.getString(R.string.prefs_file), Context.MODE_PRIVATE);
+    final boolean loggedIn = sharedPreferences.getBoolean(this.getString(R.string.prefs_key_logged_in), false);
+    final boolean remindLater = sharedPreferences.getBoolean(this.getString(R.string.prefs_key_remind_later), false);
+
+    if (loggedIn || !remindLater) {
+      Intent mainActivityIntent = new Intent(this, MainActivity.class);
+      this.startActivity(mainActivityIntent);
+    } else {
+      this.initializeElements();
+    }
   }
 
-  public void initializeComponents() {
-    this.editTextUserName = (AppCompatEditText) this.getView().findViewById(R.id.editText_fragment_main_login_prompt_username);
-    this.editTextPassword = (AppCompatEditText) this.getView().findViewById(R.id.editText_fragment_main_login_prompt_password);
-    this.buttonLogin = (AppCompatButton) this.getView().findViewById(R.id.button_fragment_main_login_prompt_login);
-    this.buttonRemindLater = (AppCompatButton) this.getView().findViewById(R.id.button_fragment_main_login_prompt_remind_later);
-    this.buttonSkip = (AppCompatButton) this.getView().findViewById(R.id.button_fragment_main_login_prompt_skip);
-
-    this.buttonLogin.setOnClickListener(this);
-    this.buttonRemindLater.setOnClickListener(this);
-    this.buttonSkip.setOnClickListener(this);
+  private void initializeElements() {
+    this.editTextUserName = (AppCompatEditText) this.findViewById(R.id.editText_fragment_main_login_prompt_username);
+    this.editTextPassword = (AppCompatEditText) this.findViewById(R.id.editText_fragment_main_login_prompt_password);
   }
 
   public void onClick(View view) {
@@ -91,21 +94,21 @@ public class LoginPromptFragment extends Fragment implements View.OnClickListene
       JsonObjectRequest loginRequest = new JsonObjectRequest(Request.Method.POST, loginRequestUrl, requestParameters, new Response.Listener<JSONObject>() {
         @Override
         public void onResponse(JSONObject response) {
-          LoginPromptFragment.this.successfulLogin(response);
+          LoginActivity.this.successfulLogin(response);
         }
       }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-          Log.e(LoginPromptFragment.LOG_TAG, error.toString());
+          Log.e(LoginActivity.LOG_TAG, (new String(error.networkResponse.data, Charset.defaultCharset())));
         }
       });
 
-      VolleySingleton.getInstance(this.getContext()).addToRequestQueue(loginRequest);
+      VolleySingleton.getInstance(this).addToRequestQueue(loginRequest);
     } catch (JSONException e) {
       e.printStackTrace();
     }
   }
-  
+
   private void successfulLogin(JSONObject response) {
     String stringAuthorizationToken;
 
@@ -116,21 +119,21 @@ public class LoginPromptFragment extends Fragment implements View.OnClickListene
       e.printStackTrace();
     }
 
-    SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(this.getString(R.string.prefs_file), Context.MODE_PRIVATE);
+    SharedPreferences sharedPreferences = this.getSharedPreferences(this.getString(R.string.prefs_file), Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPreferences.edit();
     editor.putBoolean(this.getString(R.string.prefs_key_remind_later), false);
-    editor.putString(this.getString(R.string.prefs_authorization_token), stringAuthorizationToken);
-    editor.putBoolean(this.getString(R.string.prefs_logged_in), true);
+    editor.putString(this.getString(R.string.prefs_key_authorization_token), stringAuthorizationToken);
+    editor.putBoolean(this.getString(R.string.prefs_key_logged_in), true);
     editor.apply();
   }
-  
+
   private void remindLater() {
-    SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(this.getString(R.string.prefs_file), Context.MODE_PRIVATE);
+    SharedPreferences sharedPreferences = this.getSharedPreferences(this.getString(R.string.prefs_file), Context.MODE_PRIVATE);
     sharedPreferences.edit().putBoolean(this.getString(R.string.prefs_key_remind_later), true).apply();
   }
 
   private void skip() {
-    SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(this.getString(R.string.prefs_file), Context.MODE_PRIVATE);
+    SharedPreferences sharedPreferences = this.getSharedPreferences(this.getString(R.string.prefs_file), Context.MODE_PRIVATE);
     sharedPreferences.edit().putBoolean(this.getString(R.string.prefs_key_remind_later), false).apply();
   }
 }

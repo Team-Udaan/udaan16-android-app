@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:paddingBottom="10dp"
     android:paddingEnd="10dp"
     android:paddingStart="10dp"
     android:paddingTop="10dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".fragment.LoginPromptFragment"
-    tools:showIn="@layout/fragment_main_login_prompt">
+    tools:context=".activity.LoginActivity"
+    tools:showIn="@layout/activity_login">
 
     <android.support.v7.widget.AppCompatImageView
         android:layout_width="match_parent"
@@ -29,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign-In to get more personalized experience"
-        android:textColor="@color/materialWhite"
         android:textSize="18sp" />
 
     <android.support.v4.widget.Space
@@ -62,7 +60,7 @@
         android:id="@+id/button_fragment_main_login_prompt_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/buttonBackgroundDark"
+        android:onClick="onClick"
         android:text="Login" />
 
     <android.support.v4.widget.Space
@@ -79,7 +77,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/buttonBackgroundDark"
+            android:onClick="onClick"
             android:text="Remind me Later" />
 
         <android.support.v4.widget.Space
@@ -91,7 +89,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/buttonBackgroundDark"
+            android:onClick="onClick"
             android:text="Skip" />
     </android.support.v7.widget.LinearLayoutCompat>
 

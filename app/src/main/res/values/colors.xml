@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ff212121</color>
-    <color name="colorPrimaryDark">#ff000000</color>
-    <color name="colorAccent">#ffff5722</color>
-
-    <color name="buttonBackgroundDark">@color/colorPrimary</color>
-
-    <color name="materialWhite">#ffeeeeee</color>
+    <color name="colorPrimary">#ff3f51b5</color>
+    <color name="colorPrimaryDark">#ff303f9f</color>
+    <color name="colorPrimaryLight">#ffc5cae9</color>
+    <color name="colorAccent">#ffffc101</color>
+    <color name="colorIcon">#ffeeeeee</color>
+    <color name="colorTextPrimary">#ff212121</color>
+    <color name="colorTextSecondary">#ff727272</color>
+    <color name="colorDivider">#ffb6b6b6</color>
 </resources>
