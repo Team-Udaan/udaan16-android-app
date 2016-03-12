@@ -17,12 +17,7 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-  }
-
-  @Override
-  protected void onStart() {
-    super.onStart();
+    this.setContentView(R.layout.activity_main);
 
     this.viewPagerAdapter = new MainActivityPagerAdapter(this.getSupportFragmentManager());
     this.viewPager = (ViewPager) this.findViewById(R.id.viewPager_activity_main);
@@ -39,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActionBar actionBar = this.getSupportActionBar();
     if (actionBar != null) {
-//      actionBar.setTitle(R.string.title_activity_login);
+      actionBar.setTitle(R.string.title_activity_main);
       actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
       ActionBar.TabListener tabListener = new ActionBar.TabListener() {
@@ -62,5 +57,10 @@ public class MainActivity extends AppCompatActivity {
       actionBar.addTab(actionBar.newTab().setText(R.string.title_tab_departments).setTabListener(tabListener), 0, true);
       actionBar.addTab(actionBar.newTab().setText(R.string.title_tab_about_us).setTabListener(tabListener), 1, false);
     }
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
   }
 }
