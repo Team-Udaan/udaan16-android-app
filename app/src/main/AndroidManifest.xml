@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -12,10 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/title_activity_main"
             android:noHistory="true"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +26,66 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.NonTechActivity"
+            android:label="@string/title_activity_non_tech"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.udaan16.udaan_16.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.DepartmentsActivity"
+            android:label="@string/title_activity_departments"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.udaan16.udaan_16.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.TechEventsActivity"
+            android:label="@string/title_activity_tech_events"
+            android:parentActivityName=".activity.DepartmentsActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.udaan16.udaan_16.activity.DepartmentsActivity" />
+        </activity>
+        <activity
+            android:name=".activity.CulturalActivity"
+            android:label="@string/title_activity_cultural"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.udaan16.udaan_16.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.GirlsEventsActivity"
+            android:label="@string/title_activity_girls_events"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.udaan16.udaan_16.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.NightsActivity"
+            android:label="@string/title_activity_nights"
+            android:parentActivityName=".activity.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.udaan16.udaan_16.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.EventDetailsActivity"
+            android:label="@string/title_activity_event_details"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
