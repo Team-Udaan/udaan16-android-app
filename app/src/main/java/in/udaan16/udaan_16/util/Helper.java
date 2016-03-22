@@ -1,7 +1,14 @@
 package in.udaan16.udaan_16.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 
 import in.udaan16.udaan_16.BuildConfig;
 import in.udaan16.udaan_16.R;
@@ -12,6 +19,11 @@ import in.udaan16.udaan_16.R;
  * Project: udaan16-android-app
  */
 public class Helper {
+
+  /**
+   * Used to color different cards in lists
+   */
+  public static final int[] colors = new int[]{R.color.colorDeepOrange, R.color.colorBlueGrey, R.color.colorDeepPurple, R.color.colorBlue, R.color.colorTeal};
 
   /**
    * Indicates that this is a fresh install of the application
@@ -61,5 +73,49 @@ public class Helper {
     } else {
       return Helper.LAUNCH_NORMAL;
     }
+  }
+
+  public static boolean hasNetworkConnection(Context context) {
+    boolean hasConnectedWifi = false;
+    boolean hasConnectedMobile = false;
+
+    ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networks[] = connectivityManager.getAllNetworkInfo();
+    for (NetworkInfo network : networks) {
+      if (network.getTypeName().equalsIgnoreCase("wifi")) {
+        if (network.isConnectedOrConnecting()) {
+          hasConnectedWifi = true;
+        }
+      } else if (network.getTypeName().equalsIgnoreCase("mobile")) {
+        if (network.isConnectedOrConnecting()) {
+          hasConnectedMobile = true;
+        }
+      }
+    }
+    return (hasConnectedWifi || hasConnectedMobile);
+  }
+
+  public static void showNetworkAlertPopUp(final Activity activity) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+    builder.setMessage("You need a network connection for first launch of application. Please turn on mobile network or Wi-Fi in Settings.")
+        .setTitle("Unable to connect")
+        .setCancelable(false)
+        .setPositiveButton("Settings",
+            new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int id) {
+                Intent i = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                activity.startActivity(i);
+              }
+            }
+        )
+        .setNegativeButton("Cancel",
+            new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int id) {
+                activity.finish();
+              }
+            }
+        );
+    AlertDialog alert = builder.create();
+    alert.show();
   }
 }
