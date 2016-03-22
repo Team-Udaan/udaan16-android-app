@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Creator: vbarad
- * Date: 2016-03-11
+ * Date: 2016-03-18
  * Project: udaan16-android-app
  */
-public class EventManager {
+public class BranchManager {
 
   @SerializedName("name")
   private String name;
@@ -15,7 +15,7 @@ public class EventManager {
   @SerializedName("mobile")
   private String mobile;
 
-  public EventManager(String name, String mobile) {
+  public BranchManager(String name, String mobile) {
     this.name = name;
     this.mobile = mobile;
   }

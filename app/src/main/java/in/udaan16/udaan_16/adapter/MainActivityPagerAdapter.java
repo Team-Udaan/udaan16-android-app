@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import in.udaan16.udaan_16.fragment.AboutUsFragment;
-import in.udaan16.udaan_16.fragment.DepartmentsFragment;
+import in.udaan16.udaan_16.fragment.CategoriesFragment;
 
 /**
  * Creator: vbarad
@@ -21,7 +21,7 @@ public class MainActivityPagerAdapter extends FragmentPagerAdapter {
   public Fragment getItem(int position) {
     Fragment fragment;
     if (position == 0) {
-      fragment = new DepartmentsFragment();
+      fragment = new CategoriesFragment();
     } else if (position == 1) {
       fragment = new AboutUsFragment();
     } else {

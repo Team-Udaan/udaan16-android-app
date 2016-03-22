@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }
       };
 
-      actionBar.addTab(actionBar.newTab().setText(R.string.title_tab_departments).setTabListener(tabListener), 0, true);
+      actionBar.addTab(actionBar.newTab().setText(R.string.title_tab_categories).setTabListener(tabListener), 0, true);
       actionBar.addTab(actionBar.newTab().setText(R.string.title_tab_about_us).setTabListener(tabListener), 1, false);
     }
   }
