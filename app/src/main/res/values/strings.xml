@@ -1,21 +1,35 @@
 <resources>
     <string name="app_name">Udaan-16</string>
-    <string name="title_activity_login">Udaan-16</string>
+    <string name="title_activity_splash">Udaan-16</string>
     <string name="title_activity_main">Udaan-16</string>
-    <string name="title_tab_departments">Departments</string>
+    <string name="title_activity_non_tech">Non-Tech</string>
+    <string name="title_activity_departments">Departments</string>
+    <string name="title_activity_tech_events">Tech Events</string>
+    <string name="title_activity_cultural">Cultural</string>
+    <string name="title_activity_girls_events">Girls Corner</string>
+    <string name="title_activity_nights">Nights</string>
+    <string name="title_activity_event_details">Details</string>
+    <string name="title_tab_categories">Categories</string>
     <string name="title_tab_about_us">About Us</string>
+    <string name="title_tab_event_details">Details</string>
+    <string name="title_tab_contact_us">Contact Us</string>
+    <string name="title_tab_branch_managers">Managers</string>
+    <string name="title_tab_tech_events">Events</string>
+
+    <!-- Activity Passing Keys -->
+    <string name="activity_key_position">position</string>
+    <string name="activity_key_title_name">title-name</string>
+    <string name="activity_key_event_data">event-data</string>
 
     <!-- Shared Preference Keys-->
     <string name="prefs_file" translatable="false">Udaan16Preferences</string>
     <string name="prefs_key_version_code" translatable="false">version_code</string>
-    <string name="prefs_key_remind_later" translatable="false">remind_later</string>
-    <string name="prefs_key_authorization_token" translatable="false">authorization_token</string>
-    <string name="prefs_key_logged_in" translatable="false">logged_in</string>
+    <string name="prefs_key_last_modified" translatable="false">last_modified</string>
     <string name="prefs_key_data_json" translatable="false">data_json</string>
 
     <!-- API Keys -->
-    <string name="api_key_username" translatable="false">username</string>
-    <string name="api_key_password" translatable="false">password</string>
-    <string name="api_key_authorization_token" translatable="false">authorization_token</string>
-    <string name="api_endpoint_login" translatable="false">http://udaan16.com:8000/login</string>
+    <string name="api_endpoint_timestamp" translatable="false">http://ec2-52-32-39-143.us-west-2.compute.amazonaws.com:8000/api/events/lastModified</string>
+    <string name="api_endpoint_all" translatable="false">http://ec2-52-32-39-143.us-west-2.compute.amazonaws.com:8000/api/events</string>
+
+    <string name="symbol_rupee">\u20b9</string>
 </resources>
