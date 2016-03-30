@@ -1,17 +1,21 @@
 package in.udaan16.udaan_16.adapter;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -89,29 +93,27 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
   }
 
   private void downloadAndSaveSchedule() {
-    final ProgressDialog progressDialog = ProgressDialog.show(this.activity, this.activity.getString(R.string.title_progress_schedule), "Check your pictures folder in gallery", true, false);
-//    ProgressDialog progressDialog = new ProgressDialog(this.activity/*, R.style.AppTheme*/);
-//    progressDialog.setTitle(R.string.title_progress_schedule);
-//    progressDialog.setCancelable(false);
-//    progressDialog.setIndeterminate(true);
-//    progressDialog.setMessage("Check your pictures folder in gallery");
-//    progressDialog.show();
-    Thread saveThread = new Thread() {
-      @Override
-      public void run() {
-        // Schedule for day 1
-        Bitmap day1 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_01);
-        CategoryAdapter.this.storeImage(day1, "Day-1.jpg");
-        // Schedule for day 2
-        Bitmap day2 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_02);
-        CategoryAdapter.this.storeImage(day2, "Day-2.jpg");
-        // Schedule for day 3
-        Bitmap day3 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_03);
-        CategoryAdapter.this.storeImage(day3, "Day-3.jpg");
-        progressDialog.dismiss();
-      }
-    };
-    saveThread.start();
+    if (ContextCompat.checkSelfPermission(this.activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+      final ProgressDialog progressDialog = ProgressDialog.show(this.activity, this.activity.getString(R.string.title_progress_schedule), "Check your pictures folder in gallery", true, false);
+      Thread saveThread = new Thread() {
+        @Override
+        public void run() {
+          // Schedule for day 1
+          Bitmap day1 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_01);
+          CategoryAdapter.this.storeImage(day1, "Day-1.jpg");
+          // Schedule for day 2
+          Bitmap day2 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_02);
+          CategoryAdapter.this.storeImage(day2, "Day-2.jpg");
+          // Schedule for day 3
+          Bitmap day3 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_03);
+          CategoryAdapter.this.storeImage(day3, "Day-3.jpg");
+          progressDialog.dismiss();
+        }
+      };
+      saveThread.start();
+    } else {
+      Toast.makeText(this.activity, "Please provide write permissions over external storage to download schedule images", Toast.LENGTH_LONG).show();
+    }
   }
 
   private void storeImage(Bitmap source, String fileName) {
