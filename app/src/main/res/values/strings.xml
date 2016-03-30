@@ -15,6 +15,7 @@
     <string name="title_tab_contact_us">Contact Us</string>
     <string name="title_tab_branch_managers">Managers</string>
     <string name="title_tab_tech_events">Events</string>
+    <string name="title_progress_schedule">Downloading Schedule</string>
 
     <!-- Activity Passing Keys -->
     <string name="activity_key_position">position</string>

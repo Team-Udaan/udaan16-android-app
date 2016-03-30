@@ -1,7 +1,11 @@
 package in.udaan16.udaan_16.adapter;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import in.udaan16.udaan_16.R;
@@ -76,6 +83,51 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
       Intent nightsIntent = new Intent(this.activity, NightsActivity.class);
 
       this.activity.startActivity(nightsIntent);
+    } else if (categories.get(position).getAlias().equals("schedule")) {
+      this.downloadAndSaveSchedule();
+    }
+  }
+
+  private void downloadAndSaveSchedule() {
+    final ProgressDialog progressDialog = ProgressDialog.show(this.activity, this.activity.getString(R.string.title_progress_schedule), "Check your pictures folder in gallery", true, false);
+//    ProgressDialog progressDialog = new ProgressDialog(this.activity/*, R.style.AppTheme*/);
+//    progressDialog.setTitle(R.string.title_progress_schedule);
+//    progressDialog.setCancelable(false);
+//    progressDialog.setIndeterminate(true);
+//    progressDialog.setMessage("Check your pictures folder in gallery");
+//    progressDialog.show();
+    Thread saveThread = new Thread() {
+      @Override
+      public void run() {
+        // Schedule for day 1
+        Bitmap day1 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_01);
+        CategoryAdapter.this.storeImage(day1, "Day-1.jpg");
+        // Schedule for day 2
+        Bitmap day2 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_02);
+        CategoryAdapter.this.storeImage(day2, "Day-2.jpg");
+        // Schedule for day 3
+        Bitmap day3 = BitmapFactory.decodeResource(CategoryAdapter.this.activity.getResources(), R.drawable.sched_03);
+        CategoryAdapter.this.storeImage(day3, "Day-3.jpg");
+        progressDialog.dismiss();
+      }
+    };
+    saveThread.start();
+  }
+
+  private void storeImage(Bitmap source, String fileName) {
+    try {
+      String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + File.separator + "Udaan-16";
+
+      File outputDirectory = new File(path);
+      outputDirectory.mkdirs();
+      File newImage = new File(path + File.separator + fileName);
+      if (newImage.exists()) {
+        newImage.delete();
+      }
+      FileOutputStream imageOut = new FileOutputStream(newImage);
+      source.compress(Bitmap.CompressFormat.JPEG, 100, imageOut);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
     }
   }
 

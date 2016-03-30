@@ -63,6 +63,9 @@ public class DataSingleton {
     this.dataNights = new ArrayList<>(Arrays.asList(gson.fromJson(data.getJSONArray("nights").toString(), Event[].class)));
     this.dataCultural = new ArrayList<>(Arrays.asList(gson.fromJson(data.getJSONArray("cultural").toString(), Event[].class)));
     this.dataDeveloper = new ArrayList<>(Arrays.asList(gson.fromJson(developers.toString(), Developer[].class)));
+
+    // Add category to download schedule
+    this.dataCategories.add(new Category("Download\nSchedule", "schedule"));
   }
 
   public ArrayList<Department> getDataDepartments() {
