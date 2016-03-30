@@ -112,7 +112,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
       };
       saveThread.start();
     } else {
-      Toast.makeText(this.activity, "Please provide write permissions over external storage to download schedule images", Toast.LENGTH_LONG).show();
+      Toast.makeText(this.activity, "Please grant required permissions from settings", Toast.LENGTH_LONG).show();
     }
   }
 
