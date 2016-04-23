@@ -81,3 +81,5 @@ proguard/
 # Android Studio Navigation editor temp files
 .navigation/
 
+# Icons and resources for the application
+res/
