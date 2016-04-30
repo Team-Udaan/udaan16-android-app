@@ -82,4 +82,4 @@ proguard/
 .navigation/
 
 # Icons and resources for the application
-res/
+#res/
