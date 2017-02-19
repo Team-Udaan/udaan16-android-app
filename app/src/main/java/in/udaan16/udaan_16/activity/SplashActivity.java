@@ -50,10 +50,16 @@ public class SplashActivity extends AppCompatActivity {
 
             SharedPreferences sharedPreferences = SplashActivity.this.getSharedPreferences(SplashActivity.this.getString(R.string.prefs_file), Context.MODE_PRIVATE);
 
-            if (sharedPreferences.getFloat(SplashActivity.this.getString(R.string.prefs_key_last_modified), 0) < lastModified) {
-              sharedPreferences.edit().putFloat(SplashActivity.this.getString(R.string.prefs_key_last_modified), lastModified).apply();
+            if (sharedPreferences.getFloat(SplashActivity.this.getString(R.string.prefs_key_last_modified), 0) < lastModified) { //If file does not have a key
+              sharedPreferences.edit().putFloat(SplashActivity.this.getString(R.string.prefs_key_last_modified), lastModified).apply(); //store new value of last modified in shared pref
 
               String dataUrl = SplashActivity.this.getString(R.string.api_endpoint_all);
+              /**
+               * Type of request(get in this case)
+               * url
+               * listener
+               *
+               */
               JsonObjectRequest dataRequest = new JsonObjectRequest(Request.Method.GET, dataUrl, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {

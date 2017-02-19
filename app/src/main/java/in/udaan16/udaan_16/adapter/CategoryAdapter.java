@@ -69,24 +69,24 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
   public void onItemClick(int position) {
     if (categories.get(position).getAlias().equals("tech")) {
       Intent departmentIntent = new Intent(this.activity, DepartmentsActivity.class);
-
       this.activity.startActivity(departmentIntent);
+
     } else if (categories.get(position).getAlias().equals("non-tech")) {
       Intent nonTechIntent = new Intent(this.activity, NonTechActivity.class);
-
       this.activity.startActivity(nonTechIntent);
+
     } else if (categories.get(position).getAlias().equals("cultural")) {
       Intent culturalIntent = new Intent(this.activity, CulturalActivity.class);
-
       this.activity.startActivity(culturalIntent);
+
     } else if (categories.get(position).getAlias().equals("girls-special")) {
       Intent girlsEventsIntent = new Intent(this.activity, GirlsEventsActivity.class);
-
       this.activity.startActivity(girlsEventsIntent);
+
     } else if (categories.get(position).getAlias().equals("nights")) {
       Intent nightsIntent = new Intent(this.activity, NightsActivity.class);
-
       this.activity.startActivity(nightsIntent);
+
     } else if (categories.get(position).getAlias().equals("schedule")) {
       this.downloadAndSaveSchedule();
     }

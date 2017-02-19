@@ -99,7 +99,7 @@ public class Helper {
     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
     builder.setMessage("You need a network connection for first launch of application. Please turn on mobile network or Wi-Fi in Settings.")
         .setTitle("Unable to connect")
-        .setCancelable(false)
+            .setCancelable(false) //cancellable dialog
         .setPositiveButton("Settings",
             new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int id) {
