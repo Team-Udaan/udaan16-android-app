@@ -25,36 +25,44 @@ import in.udaan16.udaan_16.util.DataSingleton;
  * Project: udaan16-android-app
  */
 public class CategoriesFragment extends Fragment {
-  private View rootView;
+    private View rootView;
 
-  private RecyclerView categoriesRecyclerView;
-  private CategoryAdapter categoriesAdapter;
-  private RecyclerView.LayoutManager categoriesLayoutManager;
+    private RecyclerView categoriesRecyclerView;
+    private CategoryAdapter categoriesAdapter;
+    private RecyclerView.LayoutManager categoriesLayoutManager;
 
-  private ArrayList<Category> categories;
+    private ArrayList<Category> categories;
 
-  @Nullable
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    this.rootView = inflater.inflate(R.layout.fragment_activity_main_categories, container, false);
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return a view which populates the fragment
+     */
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        this.rootView = inflater.inflate(R.layout.fragment_activity_main_categories, container, false);
 
-    try {
-      this.categories = DataSingleton.getInstance(this.getActivity()).getDataCategories();
+        try {
+            this.categories = DataSingleton
+                    .getInstance(this.getActivity())
+                    .getDataCategories();
 
-      this.categoriesRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView_departments);
-      this.categoriesRecyclerView.setHasFixedSize(true);
+            this.categoriesRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView_departments);
+            this.categoriesRecyclerView.setHasFixedSize(true);
 
 //      this.categoriesLayoutManager = new LinearLayoutManager(this.rootView.getContext());
-      this.categoriesLayoutManager = new GridLayoutManager(this.rootView.getContext(), 2, LinearLayoutManager.VERTICAL, false);
+            this.categoriesLayoutManager = new GridLayoutManager(this.rootView.getContext(), 2, LinearLayoutManager.VERTICAL, false);
 //      this.categoriesLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-      this.categoriesRecyclerView.setLayoutManager(this.categoriesLayoutManager);
+            this.categoriesRecyclerView.setLayoutManager(this.categoriesLayoutManager);
 
-      this.categoriesAdapter = new CategoryAdapter(categories, getActivity());
-      this.categoriesRecyclerView.setAdapter(categoriesAdapter);
-    } catch (JSONException e) {
-      e.printStackTrace();
+            this.categoriesAdapter = new CategoryAdapter(categories, getActivity());
+            this.categoriesRecyclerView.setAdapter(categoriesAdapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return this.rootView;
     }
-
-    return this.rootView;
-  }
 }
