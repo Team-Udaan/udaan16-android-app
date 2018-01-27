@@ -29,8 +29,8 @@
     <string name="prefs_key_data_json" translatable="false">data_json</string>
 
     <!-- API Keys -->
-    <string name="api_endpoint_timestamp" translatable="false">https://raw.githubusercontent.com/Team-Udaan/udaan16-android-app/master/mock-api/timestamp.json</string>
-    <string name="api_endpoint_all" translatable="false">https://raw.githubusercontent.com/Team-Udaan/udaan16-android-app/master/mock-api/event-data.json</string>
+    <string name="api_endpoint_timestamp" translatable="false">https://raw.githubusercontent.com/bvmites/udaan16-android-app/master/mock-api/timestamp.json</string>
+    <string name="api_endpoint_all" translatable="false">https://raw.githubusercontent.com/bvmites/udaan16-android-app/master/mock-api/event-data.json</string>
 
     <string name="symbol_rupee">\u20b9</string>
 </resources>
